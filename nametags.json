@@ -3,10 +3,10 @@
        "id":0,
        "UserId":"c270aa22-6705-9859-3c8f-a542d16e7c3b",
        "NamePlatesText":[
-          "<size=12><b><color=#00FFF0>NEKO NAMETAGS STAFF</color></b>"
+          "<size=5><b><color=#00FFF0>NEKO NAMETAGS STAFF</color></b>"
        ],
        "BigPlatesText":[
-          "<b><size=12><color=#00ffff>Cuteness Of Darkness</color></size></b>"
+          "<b><size=5><color=#00ffff>Cuteness Of Darkness</color></size></b>"
        ],
        "Color":[
           0,
@@ -19,7 +19,7 @@
        "id":1,
        "UserId":"bbd37a7e-af7b-b41f-2cde-b8947f9087ba",
        "NamePlatesText":[
-          "<size=12><b><color=#00FFF0>OWO</color></b>"
+          "<size=5><b><color=#00FFF0>OWO</color></b>"
        ],
        "BigPlatesText":[
        ],
