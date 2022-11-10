@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NEKOClient.Utils
+namespace NEKONameTagsCVR.Utils
 {
     internal class Json
     {

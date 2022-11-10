@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using MelonLoader;
 using Newtonsoft.Json;
 using System.IO;
-using NEKOClient.Utils;
+using NEKONameTagsCVR.Utils;
 using System.Net;
 using ABI_RC.Core.Player;
 using ABI_RC.Core.UI;
@@ -20,32 +20,30 @@ using UnityEngine.UI;
 using System.Security.Cryptography;
 using System.Reflection;
 
-[assembly: MelonInfo(typeof(NEKOClient.NEKOClient), "NEKOClientCVR", "1.0.1", "ChisVR")]
+[assembly: MelonInfo(typeof(NEKONameTagsCVR.NEKONameTagsCVR), "NEKONameTagsCVR", "1.0", "ChisVR")]
 [assembly: MelonGame("Alpha Blend Interactive", "ChilloutVR")]
 
-namespace NEKOClient
+namespace NEKONameTagsCVR
 {
 
     public static class BuildInfo
     {
-        public const string Name = "NEKOClient";
+        public const string Name = "NEKONameTagsCVR";
         public const string Author = "ChisVR";
         public const string Company = null;
-        public const string Version = "1.0.0.1";
-        public const string DownloadLink = "https://github.com/NEKO-Client/NEKOClientCVR/releases/latest/";
+        public const string Version = "1.0";
+        public const string DownloadLink = "https://github.com/NEKO-Client/NEKONameTagsCVR/releases/latest/";
     }
 
     internal static class GitHubInfo
     {
         public const string Author = "NEKO-Client";
-        public const string Repository = "NEKOClientCVR";
+        public const string Repository = "NEKONameTagsCVR";
         public const string Version = "latest";
     }
 
-    public class NEKOClient : MelonMod
+    public class NEKONameTagsCVR : MelonMod
     {
-
-        private static MelonPreferences_Entry<bool> _paranoidMode;
 
         public static bool NocturnalTagsLoaded { get; private set; }
 
@@ -69,18 +67,18 @@ namespace NEKOClient
 
         private static void ShowLogo()
         {
-            Console.Title = "NEKO CLIENT";
+            Console.Title = "NEKO NmeTags CVR";
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine(@"=============================================================================================================");
-            Console.WriteLine(@"  /$$   /$$ /$$$$$$$$ /$$   /$$  /$$$$$$         /$$$$$$  /$$       /$$$$$$ /$$$$$$$$ /$$   /$$ /$$$$$$$$    ");
-            Console.WriteLine(@" | $$$ | $$| $$_____/| $$  /$$/ /$$__  $$       /$$__  $$| $$      |_  $$_/| $$_____/| $$$ | $$|__  $$__/    ");
-            Console.WriteLine(@" | $$$$| $$| $$      | $$ /$$/ | $$  \ $$      | $$  \__/| $$        | $$  | $$      | $$$$| $$   | $$       ");
-            Console.WriteLine(@" | $$ $$ $$| $$$$$   | $$$$$/  | $$  | $$      | $$      | $$        | $$  | $$$$$   | $$ $$ $$   | $$       ");
-            Console.WriteLine(@" | $$  $$$$| $$__/   | $$  $$  | $$  | $$      | $$      | $$        | $$  | $$__/   | $$  $$$$   | $$       ");
-            Console.WriteLine(@" | $$\  $$$| $$      | $$\  $$ | $$  | $$      | $$    $$| $$        | $$  | $$      | $$\  $$$   | $$       ");
-            Console.WriteLine(@" | $$ \  $$| $$$$$$$$| $$ \  $$|  $$$$$$/      |  $$$$$$/| $$$$$$$$ /$$$$$$| $$$$$$$$| $$ \  $$   | $$       ");
-            Console.WriteLine(@" | __/  \__/|________/|__/  \__/ \______/        \______/ |________/|______/|________/|__/  \__/   |__/      ");
+            Console.WriteLine(@"                                  /$$   /$$ /$$$$$$$$ /$$   /$$  /$$$$$$      ");
+            Console.WriteLine(@"                                  | $$$ | $$| $$_____/| $$  /$$/ /$$__  $$     ");
+            Console.WriteLine(@"                                  | $$$$| $$| $$      | $$ /$$/ | $$  \ $$     ");
+            Console.WriteLine(@"                                  | $$ $$ $$| $$$$$   | $$$$$/  | $$  | $$     ");
+            Console.WriteLine(@"                                  | $$  $$$$| $$__/   | $$  $$  | $$  | $$     ");
+            Console.WriteLine(@"                                  | $$\  $$$| $$      | $$\  $$ | $$  | $$     ");
+            Console.WriteLine(@"                                  | $$ \  $$| $$$$$$$$| $$ \  $$|  $$$$$$/     ");
+            Console.WriteLine(@"                                  | __/  \__/|________/|__/  \__/ \______/     ");
             Console.WriteLine("                                                                                                              ");
             Console.WriteLine(@"                                                     /\__ /\                                                 ");
             Console.WriteLine(@"                                                    /`     '\                                                ");
@@ -99,7 +97,7 @@ namespace NEKOClient
 
         public override void OnApplicationStart()
         {
-            DownloadFromGitHub("NEKOClient", out var assembly);
+            DownloadFromGitHub("NEKONameTagsCVR", out var assembly);
 
             if (assembly == null)
                 return;
@@ -107,7 +105,7 @@ namespace NEKOClient
             ShowLogo();
             NocturnalTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "Nocturnal Plates");
             MelonLogger.Msg("Initializing.");
-            MelonLogger.Msg("NEKOClient Loaded. Press Slash To Reload Tags");
+            MelonLogger.Msg("NEKONameTagsCVR Loaded. Press Slash To Reload Tags");
             DownloadString();
             _hInstance.Patch(typeof(PlayerNameplate).GetMethod(nameof(PlayerNameplate.UpdateNamePlate)), null, typeof(Main).GetMethod(nameof(OnPlayerJoin), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static).ToNewHarmonyMethod());
             MelonCoroutines.Start(WaitForNamePlate());
@@ -127,7 +125,7 @@ namespace NEKOClient
             {
                 ReloadString();
                 MelonLogger.Msg("Reloaded Tags, Please Rejoin World.");
-                CohtmlHud.Instance.ViewDropText("NEKOClient", "Connected", "Connected To NEKOClient");
+                CohtmlHud.Instance.ViewDropText("NEKONameTagsCVR", "Connected", "Connected To NEKONameTagsCVR");
             }
         }
 
@@ -223,7 +221,7 @@ namespace NEKOClient
         {
             s_plateTransform = GameObject.Find("/" + uid + "[NamePlate]/Canvas").transform;
             s_Logo = GameObject.Instantiate(s_plateTransform.transform.Find("Content/TMP:Username").gameObject, s_plateTransform.transform.Find("Content").transform).gameObject.GetComponent<TMPro.TextMeshProUGUI>();
-            s_Logo.text = "<b><i><color=#00FFFF>NC</color>";
+            s_Logo.text = "<b><i><color=#00FFFF>NT</color>";
             s_Logo.outlineWidth = 0.23f;
             s_Logo.outlineColor = new Color32(0, 0, 0, 255);
             s_Logo.autoSizeTextContainer = true;
@@ -236,7 +234,7 @@ namespace NEKOClient
         private static void DownloadString()
         {
             using (WebClient wc = new WebClient())
-                _userArr = JsonConvert.DeserializeObject<List<Json.User>>(wc.DownloadString("https://api.chisdealhd.co.uk/v2/games/api/chilloutvrclient/nekoclientcvr/assets/NameTags"));
+                _userArr = JsonConvert.DeserializeObject<List<Json.User>>(wc.DownloadString("https://api.chisdealhd.co.uk/v2/games/api/chilloutvrclient/NEKONameTagsCVR/assets/NameTags"));
         }
 
 
@@ -249,7 +247,7 @@ namespace NEKOClient
 
         private void DownloadFromGitHub(string fileName, out Assembly loadedAssembly)
         {
-            if (fileName == "NEKOClient")
+            if (fileName == "NEKONameTagsCVR")
             {
 
                 using var sha256 = SHA256.Create();
@@ -272,7 +270,7 @@ namespace NEKOClient
                 byte[] latestBytes = null;
                 try
                 {
-                    latestBytes = wc.DownloadData($"https://api.chisdealhd.co.uk/v2/games/api/vrchatclient/nekoclientcvr/assets/{fileName}");
+                    latestBytes = wc.DownloadData($"https://api.chisdealhd.co.uk/v2/games/api/chilloutvrclient/NEKONameTagsCVR/assets/{fileName}");
                 }
                 catch (WebException e)
                 {
@@ -306,24 +304,16 @@ namespace NEKOClient
 
                     if (latestHash != currentHash)
                     {
-                        if (_paranoidMode.Value)
+                        bytes = latestBytes;
+                        try
                         {
-                            MelonLogger.Msg(ConsoleColor.Cyan,
-                                $"There is a new version of ReModCE available. You can either delete the \"{fileName}.dll\" from your VRChat directory or go to https://github.com/{GitHubInfo.Author}/{GitHubInfo.Repository}/releases/latest/ and download the latest version.");
+                            File.WriteAllBytes($"Mods/{fileName}.dll", bytes);
                         }
-                        else
+                        catch (IOException)
                         {
-                            bytes = latestBytes;
-                            try
-                            {
-                                File.WriteAllBytes($"Mods/{fileName}.dll", bytes);
-                            }
-                            catch (IOException)
-                            {
-                                ReLogger.Warning($"Failed writing {fileName} to disk. You may encounter errors while using ReModCE.");
-                            }
-                            MelonLogger.Msg(ConsoleColor.Green, $"Updated {fileName} to latest version.");
+                            ReLogger.Warning($"Failed writing {fileName} to disk. You may encounter errors while using ReModCE.");
                         }
+                        MelonLogger.Msg(ConsoleColor.Green, $"Updated {fileName} to latest version.");
                     }
                 }
 
@@ -362,7 +352,7 @@ namespace NEKOClient
                 byte[] latestBytes = null;
                 try
                 {
-                    latestBytes = wc.DownloadData($"https://api.chisdealhd.co.uk/v2/games/api/vrchatclient/nekoclientcvr/assets/{fileName}");
+                    latestBytes = wc.DownloadData($"https://api.chisdealhd.co.uk/v2/games/api/chilloutvrclient/NEKONameTagsCVR/assets/{fileName}");
                 }
                 catch (WebException e)
                 {
@@ -396,24 +386,17 @@ namespace NEKOClient
 
                     if (latestHash != currentHash)
                     {
-                        if (_paranoidMode.Value)
+
+                        bytes = latestBytes;
+                        try
                         {
-                            MelonLogger.Msg(ConsoleColor.Cyan,
-                                $"There is a new version of ReModCE available. You can either delete the \"{fileName}.dll\" from your VRChat directory or go to https://github.com/{GitHubInfo.Author}/{GitHubInfo.Repository}/releases/latest/ and download the latest version.");
+                            File.WriteAllBytes($"Mods/{fileName}.dll", bytes);
                         }
-                        else
+                        catch (IOException)
                         {
-                            bytes = latestBytes;
-                            try
-                            {
-                                File.WriteAllBytes($"Mods/{fileName}.dll", bytes);
-                            }
-                            catch (IOException)
-                            {
-                                ReLogger.Warning($"Failed writing {fileName} to disk. You may encounter errors while using ReModCE.");
-                            }
-                            MelonLogger.Msg(ConsoleColor.Green, $"Updated {fileName} to latest version.");
+                            ReLogger.Warning($"Failed writing {fileName} to disk. You may encounter errors while using ReModCE.");
                         }
+                        MelonLogger.Msg(ConsoleColor.Green, $"Updated {fileName} to latest version.");
                     }
                 }
 
@@ -442,11 +425,6 @@ namespace NEKOClient
 
             return sb.ToString();
         }
-
-
-
-
-
 
     }
 }

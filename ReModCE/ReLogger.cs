@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NEKOClient
+namespace NEKONameTagsCVR
 {
     public static class ReLogger
     {
