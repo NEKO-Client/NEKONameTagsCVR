@@ -46,5 +46,23 @@
           0,
           201
        ]
-    }
+    },
+    {
+       "id":3,
+       "UserId":"bfacdfb9-0519-ff56-e654-8098d7d6219f",
+       "NamePlatesText":[
+          "<size=15><b><color=#00FFF0>NEKO NAMETAGS STAFF</color></b>",
+          "<b><size=15><color=#00ffff>Cuteness Of Darkness</color></size></b>",
+          "#animatedtag#<color=#DC00FF>TWITCH.TV/CHISVR",
+          "#rainbow#TWITCH.TV/CHISVR"
+       ],
+       "BigPlatesText":[
+       ],
+       "Color":[
+          0,
+          0,
+          0,
+          201
+       ]
+    },
 ]
