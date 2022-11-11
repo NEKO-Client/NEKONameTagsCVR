@@ -3,7 +3,8 @@
        "id":0,
        "UserId":"c270aa22-6705-9859-3c8f-a542d16e7c3b",
        "NamePlatesText":[
-          "<size=12><b><color=#00FFF0>NEKO NAMETAGS STAFF</color></b>"
+          "<size=15><b><color=#00FFF0>NEKO NAMETAGS STAFF</color></b>",
+          "<b><size=15><color=#00ffff>Cuteness Of Darkness</color></size></b>"
        ],
        "BigPlatesText":[
        ],
@@ -18,8 +19,8 @@
        "id":1,
        "UserId":"bbd37a7e-af7b-b41f-2cde-b8947f9087ba",
        "NamePlatesText":[
-          "<size=65><b><color=#00FFF0>OWO</color></b>",
-          "<b><size=65><color=#00ffff>Cuteness Of Darkness</color></size></b>"
+          "<size=15><b><color=#00FFF0>OWO</color></b>",
+          "<b><size=15><color=#00ffff>Cuteness Of Darkness</color></size></b>"
        ],
        "BigPlatesText":[
        ],
@@ -34,7 +35,7 @@
        "id":2,
        "UserId":"09a10e7b-fa69-a68d-786d-e09cb881554c",
        "NamePlatesText":[
-          "<size=12><b><color=#00FFF0>IM A CUTIE</color></b>"
+          "<size=15><b><color=#00FFF0>IM A CUTIE</color></b>"
        ],
        "BigPlatesText": [
        ],
