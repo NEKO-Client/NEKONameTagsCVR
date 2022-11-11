@@ -1,0 +1,6 @@
+C:\Users\Chisd\Desktop\FewTags-CVR-main\FewTags\NEKONameTagsCVR.Loader\obj\Debug\NEKONameTagsCVR.Loader.csproj.AssemblyReference.cache
+C:\Users\Chisd\Desktop\FewTags-CVR-main\FewTags\NEKONameTagsCVR.Loader\obj\Debug\NEKONameTagsCVR.Loader.csproj.CoreCompileInputs.cache
+C:\Users\Chisd\Desktop\FewTags-CVR-main\FewTags\NEKONameTagsCVR.Loader\bin\Debug\NEKONameTagsCVR.Loader.dll
+C:\Users\Chisd\Desktop\FewTags-CVR-main\FewTags\NEKONameTagsCVR.Loader\bin\Debug\NEKONameTagsCVR.Loader.pdb
+C:\Users\Chisd\Desktop\FewTags-CVR-main\FewTags\NEKONameTagsCVR.Loader\obj\Debug\NEKONameTagsCVR.Loader.dll
+C:\Users\Chisd\Desktop\FewTags-CVR-main\FewTags\NEKONameTagsCVR.Loader\obj\Debug\NEKONameTagsCVR.Loader.pdb
