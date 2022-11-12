@@ -5,8 +5,7 @@
        "NamePlatesText":[
           "<size=15><b><color=#00FFF0>NEKO NAMETAGS STAFF</color></b>",
           "<b><size=15><color=#00ffff>Cuteness Of Darkness</color></size></b>",
-          "#animatedtag#<color=#DC00FF>TWITCH.TV/CHISVR",
-          "#rainbow#TWITCH.TV/CHISVR"
+          "<color=#DC00FF>TWITCH.TV/CHISVR"
        ],
        "BigPlatesText":[
        ],
@@ -39,6 +38,39 @@
           "<size=15><b><color=#00FFF0>ChisVR Missress With Awesome Cutie Powers</color></b>"
        ],
        "BigPlatesText": [
+       ],
+       "Color":[
+          0,
+          0,
+          0,
+          201
+       ]
+    },
+    {
+       "id":3,
+       "UserId":"996f7dee-09a6-11db-9d55-34c451a46b05",
+       "NamePlatesText":[
+          "<size=15><b><color=#00FFF0>NEKO NAMETAGS STAFF</color></b>",
+          "<b><color=red>MIGHTY BISON</color></b>",
+          "<color=red>FluffyGang Admin"
+       ],
+       "BigPlatesText":[
+       ],
+       "Color":[
+          0,
+          0,
+          0,
+          201
+       ]
+    },
+    {
+       "id":4,
+       "UserId":"fce3b701-5560-8ec4-38f8-5382be7799ea",
+       "NamePlatesText":[
+          "<size=15><b><color=#00FFF0>NEKO NAMETAGS STAFF</color></b>",
+          "<b><color=#46eb34>PARTERED OF MIGHTY BISON</color></b>"
+       ],
+       "BigPlatesText":[
        ],
        "Color":[
           0,
