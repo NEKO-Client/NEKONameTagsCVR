@@ -95,21 +95,5 @@
           0,
           201
        ]
-    },
-    {
-       "id":6,
-       "UserId":"86ce8e72-9204-359d-1ca0-678ec6783a90",
-       "NamePlatesText":[
-          "<b><color=#00FFF0>TEST 3</color></b>",
-          "<b><color=#46eb34>TEST 4</color></b>"
-       ],
-       "BigPlatesText":[
-       ],
-       "Color":[
-          0,
-          0,
-          0,
-          201
-       ]
     }
 ]
