@@ -4,7 +4,6 @@
        "UserId":"c270aa22-6705-9859-3c8f-a542d16e7c3b",
        "NamePlatesText":[
           "<b><color=#00FFF0>NEKO NAMETAGS STAFF</color></b>",
-          "<b><color=#00ffff>Cuteness Of Darkness</color></b>",
           "<color=#DC00FF>TWITCH.TV/NEKOSUNEVR"
        ],
        "BigPlatesText":[
@@ -35,7 +34,8 @@
        "id":2,
        "UserId":"09a10e7b-fa69-a68d-786d-e09cb881554c",
        "NamePlatesText":[
-          "<b><color=#00FFF0>NekoSuneVR Missress With Awesome Cutie Powers</color></b>"
+          "<b><color=#00FFF0>NekoSuneVR Missress</color></b>",
+           "<color=#DC00FF>TWITCH.TV/KUROKARINN"
        ],
        "BigPlatesText": [
        ],
@@ -67,8 +67,7 @@
        "id":4,
        "UserId":"fce3b701-5560-8ec4-38f8-5382be7799ea",
        "NamePlatesText":[
-          "<b><color=#00FFF0>NEKO NAMETAGS STAFF</color></b>",
-          "<b><color=#46eb34>PARTERED OF MIGHTY BISON</color></b>"
+          "<b><color=#00FFF0>NEKO NAMETAGS STAFF</color></b>"
        ],
        "BigPlatesText":[
        ],
@@ -83,8 +82,6 @@
        "id":5,
        "UserId":"bfacdfb9-0519-ff56-e654-8098d7d6219f",
        "NamePlatesText":[
-          "<b><color=#00FFF0>TEST 1</color></b>",
-          "<b><color=#46eb34>TEST 2</color></b>"
        ],
        "BigPlatesText":[
        ],
