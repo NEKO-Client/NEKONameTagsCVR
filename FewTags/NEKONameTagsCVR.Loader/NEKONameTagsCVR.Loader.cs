@@ -13,7 +13,7 @@ namespace NEKONameTagsCVR.Loader
     public static class BuildInfo
     {
         public const string Name = "NEKONameTagsCVR.Loader";
-        public const string Author = "ChisVR";
+        public const string Author = "NekoSuneVR";
         public const string Company = null;
         public const string Version = "1.0";
         public const string DownloadLink = "https://github.com/NEKO-Client/NEKONameTagsCVR/releases/latest/";
@@ -64,7 +64,7 @@ namespace NEKONameTagsCVR.Loader
                 byte[] latestBytes = null;
                 try
                 {
-                    latestBytes = wc.DownloadData($"https://api.chisdealhd.co.uk/v2/games/api/chilloutvrclient/NEKONameTagsCVR/assets/{fileName}");
+                    latestBytes = wc.DownloadData($"https://api.nekosunevr.co.uk/v3/games/api/chilloutvrclient/NEKONameTagsCVR/assets/{fileName}");
                 }
                 catch (WebException e)
                 {
@@ -107,7 +107,7 @@ namespace NEKONameTagsCVR.Loader
                         {
                             ReLogger.Warning($"Failed writing {fileName} to disk. You may encounter errors while using ReModCE.");
                         }
-                        MelonLogger.Msg(ConsoleColor.Green, $"Updated {fileName} to latest version.");
+                        MelonLogger.Msg(System.ConsoleColor.Green, $"Updated {fileName} to latest version.");
                     }
                 }
 
@@ -146,7 +146,7 @@ namespace NEKONameTagsCVR.Loader
                 byte[] latestBytes = null;
                 try
                 {
-                    latestBytes = wc.DownloadData($"https://api.chisdealhd.co.uk/v2/games/api/chilloutvrclient/NEKONameTagsCVR/assets/{fileName}");
+                    latestBytes = wc.DownloadData($"https://api.nekosunevr.co.uk/v3/games/api/chilloutvrclient/NEKONameTagsCVR/assets/{fileName}");
                 }
                 catch (WebException e)
                 {
@@ -190,7 +190,7 @@ namespace NEKONameTagsCVR.Loader
                         {
                             ReLogger.Warning($"Failed writing {fileName} to disk. You may encounter errors while using ReModCE.");
                         }
-                        MelonLogger.Msg(ConsoleColor.Green, $"Updated {fileName} to latest version.");
+                        MelonLogger.Msg(System.ConsoleColor.Green, $"Updated {fileName} to latest version.");
                     }
                 }
 

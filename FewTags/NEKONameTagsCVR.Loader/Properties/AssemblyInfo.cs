@@ -43,4 +43,6 @@ using NEKONameTagsCVR.Loader;
 // If no MelonModGameAttribute is found or any of the Values for any MelonModGame on the Mod is null or empty it will be assumed the Mod is Universal.
 // Values for MelonModGame can be found in the Game's app.info file or printed at the top of every log directly beneath the Unity version.
 [assembly: MelonGame("Alpha Blend Interactive", "ChilloutVR")]
+#pragma warning disable CS0618 // Type or member is obsolete
 [assembly: MelonColor(ConsoleColor.Magenta)]
+#pragma warning restore CS0618 // Type or member is obsolete
