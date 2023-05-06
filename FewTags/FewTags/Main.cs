@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -114,20 +114,6 @@ namespace NEKONameTagsCVR
         private static string s_uId { get; set; }
         private static Json.User s_user { get; set; }
 
-        /*private static void OnTimedEvent(PlayerNameplate __instance, ElapsedEventArgs e)
-        {
-
-            _userArr.Clear();
-            DownloadString();
-
-            s_uId = __instance.transform.parent.name;
-            s_user = _userArr.FirstOrDefault(x => x.UserId == s_uId);
-            if (s_user == null) return;
-            for (int i = 0; i < s_user.NamePlatesText.Length; i++)
-                GeneratePlate(s_uId, s_user.NamePlatesText[i], i, new Color32(byte.Parse(s_user.Color[0].ToString()), byte.Parse(s_user.Color[1].ToString()), byte.Parse(s_user.Color[2].ToString()), byte.Parse(s_user.Color[3].ToString())));
-            //CreateLogo(s_uId);
-        }*/
-
         private static void OnPlayerJoin(PlayerNameplate __instance)
         {
             if (__instance.player.ownerId == "c270aa22-6705-9859-3c8f-a542d16e7c3b" || __instance.player.ownerId == "996f7dee-09a6-11db-9d55-34c451a46b05" || __instance.player.ownerId == "fce3b701-5560-8ec4-38f8-5382be7799ea")
@@ -143,6 +129,15 @@ namespace NEKONameTagsCVR
 
             s_user = _userArr.FirstOrDefault(x => x.UserId == s_uId);
             if (s_user == null) return;
+            if (s_user.isLive == true)
+            {
+                GeneratePlateLIVE(s_uId, s_user.platform, 0, new Color32(byte.Parse(s_user.Color[0].ToString()), byte.Parse(s_user.Color[1].ToString()), byte.Parse(s_user.Color[2].ToString()), byte.Parse(s_user.Color[3].ToString())));
+            } 
+            else
+            {
+                s_MainPlateHolder = GameObject.Find("/" + s_uId + "[NamePlate]/Canvas").gameObject;
+                GameObject.Destroy(s_MainPlateHolder.transform.Find("NTLIVESTATS").gameObject);
+            }
             for (int i = 0; i < s_user.NamePlatesText.Length; i++)
                 GeneratePlate(s_uId, s_user.NamePlatesText[i], i, new Color32(byte.Parse(s_user.Color[0].ToString()), byte.Parse(s_user.Color[1].ToString()), byte.Parse(s_user.Color[2].ToString()), byte.Parse(s_user.Color[3].ToString())));
             //for (int i = 0; i < s_user.BigPlatesText.Length; i++)
@@ -160,6 +155,16 @@ namespace NEKONameTagsCVR
 
             s_user = _userArr.FirstOrDefault(x => x.UserId == s_uId);
             if (s_user == null) return;
+            if (s_user.isLive == true)
+            {
+                GeneratePlateLIVE(s_uId, s_user.platform, 0, new Color32(byte.Parse(s_user.Color[0].ToString()), byte.Parse(s_user.Color[1].ToString()), byte.Parse(s_user.Color[2].ToString()), byte.Parse(s_user.Color[3].ToString())));
+            }
+            else
+            {
+                s_MainPlateHolder = GameObject.Instantiate(s_namePlate, GameObject.Find("/" + s_uId + "[NamePlate]/Canvas").transform);
+                GameObject.Destroy(s_MainPlateHolder.transform.Find("NTLIVESTATS").gameObject);
+            }
+
             for (int i = 0; i < s_user.NamePlatesText.Length; i++)
                 GeneratePlate(s_uId, s_user.NamePlatesText[i], i, new Color32(byte.Parse(s_user.Color[0].ToString()), byte.Parse(s_user.Color[1].ToString()), byte.Parse(s_user.Color[2].ToString()), byte.Parse(s_user.Color[3].ToString())));
             //for (int i = 0; i < s_user.BigPlatesText.Length; i++)
@@ -196,7 +201,8 @@ namespace NEKONameTagsCVR
             {
                 s_textCount = plateText.Contains("<color=") ? plateText.Length - (Regex.Matches(plateText, "<color=").Count != 1 ? Regex.Matches(plateText, "<color=").Count * 23 - 3 : 20) : plateText.Length;
                 s_MainPlateHolder = GameObject.Instantiate(s_namePlate, GameObject.Find("/" + uid + "[NamePlate]/Canvas").transform);
-                s_MainPlateHolder.transform.localPosition = new Vector3(0, -0.155f - (multiplier) * 0.0778f, 0);
+                s_MainPlateHolder.name = "NTNamePlate";
+                s_MainPlateHolder.transform.localPosition = new Vector3(0, 0.4f - (multiplier) * 0.0778f, 0);
                 s_imageHolder = s_MainPlateHolder.transform.Find("Image").gameObject;
                 s_imageHolder.GetComponent<UnityEngine.UI.Image>().color = color;
                 GameObject.Destroy(s_MainPlateHolder.transform.Find("Image/FriendsIndicator").gameObject);
@@ -217,6 +223,39 @@ namespace NEKONameTagsCVR
                 // Done Just For Removing The Text Under Devs/Mods - Doesn't Effect Being Able To See Who Is A Dev/Mod ect. (Done For Personal Preference To Make Things Cleaner)
                 //s_dev = GameObject.Find("/" + uid + "[NamePlate]/Canvas/Content/Disable with Menu").gameObject.GetComponent<RectTransform>().gameObject;
                 //s_dev.transform.gameObject.SetActive(false);
+            }
+            catch { }
+        }
+
+        private static void GeneratePlateLIVE(string uid, string plateText, int multiplier, Color32 color)
+        {
+            // This Was Used For Testing Mainly To Check Lengths Of Things (Sorta Math Related I Guess)
+            // MelonLogger.Msg("---PlateText---");
+            // MelonLogger.Msg(plateText);
+            // MelonLogger.Msg("---PlateText Length---");
+            // MelonLogger.Msg(plateText.Length);
+
+            try  // Try Catch For Incase The Tag Somehow Manages To Mess Up
+            {
+                s_textCount = plateText.Contains("<color=") ? plateText.Length - (Regex.Matches(plateText, "<color=").Count != 1 ? Regex.Matches(plateText, "<color=").Count * 23 - 3 : 20) : plateText.Length;
+                s_MainPlateHolder = GameObject.Instantiate(s_namePlate, GameObject.Find("/" + uid + "[NamePlate]/Canvas").transform);
+                s_MainPlateHolder.name = "NTLIVESTATS";
+                s_MainPlateHolder.transform.localPosition = new Vector3(0, 0.5f - (multiplier) * 0.0778f, 0);
+                s_imageHolder = s_MainPlateHolder.transform.Find("Image").gameObject;
+                s_imageHolder.GetComponent<UnityEngine.UI.Image>().color = color;
+                GameObject.Destroy(s_MainPlateHolder.transform.Find("Image/FriendsIndicator").gameObject);
+                GameObject.Destroy(s_MainPlateHolder.transform.Find("Image/ObjectMaskSlave").gameObject);
+                GameObject.Destroy(s_MainPlateHolder.transform.Find("Disable with Menu").gameObject);
+                s_MainPlateHolder.transform.localScale = new Vector3(0.3f, 0.3f, 1);
+                s_imageHolder.transform.localScale = new Vector3(1, 0.5f, 1);
+                s_imageHolder.GetComponent<RectTransform>().sizeDelta = new Vector2(s_textCount / 10, 0.5f);
+                s_textMeshProGmj = s_MainPlateHolder.transform.Find("TMP:Username").gameObject;
+                s_textMeshProGmj.transform.localScale = new Vector3(0.58f, 0.58f, 1);
+                s_textMeshProGmj.transform.localPosition = Vector3.zero;
+                s_textMeshProGmj.GetComponent<TMPro.TextMeshProUGUI>().text = plateText;
+                s_textMeshProGmj.GetComponent<TMPro.TextMeshProUGUI>().alignment = TMPro.TextAlignmentOptions.Center;
+                s_textMeshProGmj.GetComponent<TMPro.TextMeshProUGUI>().autoSizeTextContainer = true;
+                s_textMeshProGmj.gameObject.GetComponent<UnityEngine.RectTransform>().anchoredPosition = new Vector2(-0.05f, 0f);
             }
             catch { }
         }
