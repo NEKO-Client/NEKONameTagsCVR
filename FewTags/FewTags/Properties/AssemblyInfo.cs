@@ -10,12 +10,14 @@ using MelonLoader;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("NEKONameTagsCVR")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: MelonInfo(typeof(NEKONameTagsCVR.Main), "NEKONameTagsCVR", "1.0.1", "ChisVR")]
+[assembly: MelonInfo(typeof(NEKONameTagsCVR.Main), "NEKONameTagsCVR", "1.0.4", "NekoSuneVR")]
+#pragma warning disable CS0618 // Type or member is obsolete
 [assembly: MelonColor(System.ConsoleColor.Cyan)]
+#pragma warning restore CS0618 // Type or member is obsolete
 [assembly: MelonGame("Alpha Blend Interactive", "ChilloutVR")]
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
