@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NEKONameTagsCVR.Utils
+namespace NekoNameTagsCVR.Utils
 {
     internal class Json
     {
@@ -16,6 +12,8 @@ namespace NEKONameTagsCVR.Utils
             public string[] NamePlatesText { get; set; }
             public string[] BigPlatesText { get; set; }
             public int[] Color { get; set; }
+            public bool isLive { get; set; }
+            public string platform { get; set; }
         }
     }
 }

@@ -1,21 +1,21 @@
 ﻿using MelonLoader;
-using System;
-using System.Collections;
+using NEKONameTagsCVR.Loader;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Reflection;
 using System.Security.Cryptography;
+using System.Text;
 
-namespace NEKONameTagsCVR.Loader
+// Thanks To Edward7 For The Original Base
+
+namespace NekoNameTagsCVR.Loader
 {
     public static class BuildInfo
     {
         public const string Name = "NEKONameTagsCVR.Loader";
         public const string Author = "NekoSuneVR";
         public const string Company = null;
-        public const string Version = "1.0";
+        public const string Version = "1.1";
         public const string DownloadLink = "https://github.com/NEKO-Client/NEKONameTagsCVR/releases/latest/";
     }
 
@@ -24,185 +24,89 @@ namespace NEKONameTagsCVR.Loader
         public const string Author = "NEKO-Client";
         public const string Repository = "NEKONameTagsCVR";
         public const string Version = "latest";
+        public const string Loader = "NEKONameTagsCVR.Loader.dll";
+        public const string Mod = "NEKONameTagsCVR.dll";
     }
 
     public class ReLoader : MelonPlugin
     {
+        private string shortpathLoader = "NEKONameTagsCVR.Loader.dll";
+        private string filepathLoader = "Plugins/NEKONameTagsCVR.Loader.dll";
 
+        private string shortpath = "NEKONameTagsCVR.dll";
+        private string filepath = "Mods/NEKONameTagsCVR.dll";
+
+        private void GetLatestVersion()
+        {
+            DownloadFromGitHub("NEKONameTagsCVR.Loader.dll");
+            DownloadFromGitHub("NEKONameTagsCVR");
+        }
+
+
+#pragma warning disable CS0672 // Member overrides obsolete member
         public override void OnApplicationStart()
+#pragma warning restore CS0672 // Member overrides obsolete member
         {
             MelonLogger.Msg("Checking latest version for github");
             GetLatestVersion();
         }
-        private void GetLatestVersion()
-        {
-            DownloadFromGitHub("NEKONameTagsCVR", out _);
-        }
 
-        private void DownloadFromGitHub(string fileName, out Assembly loadedAssembly)
+        private void DownloadFromGitHub(string fileName)
         {
             if (fileName == "NEKONameTagsCVR")
             {
-
-                using var sha256 = SHA256.Create();
-
-                byte[] bytes = null;
-                if (File.Exists($"Mods/{fileName}.dll"))
+                SHA256 sha = SHA256.Create();
+                if (File.Exists(shortpath))
                 {
-                    bytes = File.ReadAllBytes($"Mods/{fileName}.dll");
+                    File.Delete(shortpath);
+                    ReLogger.Msg("Yeeted NEKONameTagsCVR From Folder!");
                 }
-
-                using var wc = new WebClient
+                byte[] bytes;
+                if (!File.Exists(filepath))
                 {
-                    Headers =
-                {
-                    ["User-Agent"] =
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0"
+                    bytes = new WebClient().DownloadData($"{BuildInfo.DownloadLink}download/{GitHubInfo.Mod}");
+                    File.WriteAllBytes(filepath, bytes);
+                    ReLogger.Msg("NEKONameTagsCVR Downloaded!");
+                    return;
                 }
-                };
-
-                byte[] latestBytes = null;
-                try
+                bytes = new WebClient().DownloadData($"{BuildInfo.DownloadLink}download/{GitHubInfo.Mod}");
+                string text = ComputeHash(sha, bytes);
+                byte[] data = File.ReadAllBytes(filepath);
+                if (ComputeHash(sha, data) != text)
                 {
-                    latestBytes = wc.DownloadData($"https://api.nekosunevr.co.uk/v3/games/api/chilloutvrclient/NEKONameTagsCVR/assets/{fileName}");
+                    File.WriteAllBytes(filepath, bytes);
+                    ReLogger.Msg("NEKONameTagsCVR Updated!");
                 }
-                catch (WebException e)
+                else
                 {
-                    MelonLogger.Error($"Unable to download latest version of ReModCE: {e}");
+                    ReLogger.Msg("NEKONameTagsCVR Is Already Up To Date!");
                 }
-
-                if (bytes == null)
+            } else {
+                SHA256 sha = SHA256.Create();
+                if (File.Exists(shortpathLoader))
                 {
-                    if (latestBytes == null)
-                    {
-                        MelonLogger.Error($"No local file exists and unable to download latest version from GitHub. {fileName} will not load!");
-                        loadedAssembly = null;
-                        return;
-                    }
-                    MelonLogger.Warning($"Couldn't find {fileName}.dll on disk. Saving latest version from GitHub.");
-                    bytes = latestBytes;
-                    try
-                    {
-                        File.WriteAllBytes($"Mods/{fileName}.dll", bytes);
-                    }
-                    catch (IOException)
-                    {
-                        ReLogger.Warning($"Failed writing {fileName} to disk. You may encounter errors while using ReModCE.");
-                    }
+                    File.Delete(shortpathLoader);
+                    ReLogger.Msg("Yeeted NEKONameTagsCVR.Loader From Folder!");
                 }
-
-                if (latestBytes != null)
+                byte[] bytes;
+                if (!File.Exists(filepathLoader))
                 {
-                    var latestHash = ComputeHash(sha256, latestBytes);
-                    var currentHash = ComputeHash(sha256, bytes);
-
-                    if (latestHash != currentHash)
-                    {
-                        bytes = latestBytes;
-                        try
-                        {
-                            File.WriteAllBytes($"Mods/{fileName}.dll", bytes);
-                        }
-                        catch (IOException)
-                        {
-                            ReLogger.Warning($"Failed writing {fileName} to disk. You may encounter errors while using ReModCE.");
-                        }
-                        MelonLogger.Msg(System.ConsoleColor.Green, $"Updated {fileName} to latest version.");
-                    }
+                    bytes = new WebClient().DownloadData($"{BuildInfo.DownloadLink}download/{GitHubInfo.Loader}");
+                    File.WriteAllBytes(filepathLoader, bytes);
+                    ReLogger.Msg("NEKONameTagsCVR.Loader Downloaded!");
+                    return;
                 }
-
-
-                try
+                bytes = new WebClient().DownloadData($"{BuildInfo.DownloadLink}download/{GitHubInfo.Loader}");
+                string text = ComputeHash(sha, bytes);
+                byte[] data = File.ReadAllBytes(filepathLoader);
+                if (ComputeHash(sha, data) != text)
                 {
-                    loadedAssembly = Assembly.Load(bytes);
+                    File.WriteAllBytes(filepathLoader, bytes);
+                    ReLogger.Msg("NEKONameTagsCVR.Loader Updated!");
                 }
-                catch (BadImageFormatException e)
+                else
                 {
-                    MelonLogger.Error($"Couldn't load specified image: {e}");
-                    loadedAssembly = null;
-                }
-
-            }
-            else
-            {
-
-                using var sha256 = SHA256.Create();
-
-                byte[] bytes = null;
-                if (File.Exists($"Mods/{fileName}.dll"))
-                {
-                    bytes = File.ReadAllBytes($"Mods/{fileName}.dll");
-                }
-
-                using var wc = new WebClient
-                {
-                    Headers =
-                {
-                    ["User-Agent"] =
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0"
-                }
-                };
-
-                byte[] latestBytes = null;
-                try
-                {
-                    latestBytes = wc.DownloadData($"https://api.nekosunevr.co.uk/v3/games/api/chilloutvrclient/NEKONameTagsCVR/assets/{fileName}");
-                }
-                catch (WebException e)
-                {
-                    MelonLogger.Error($"Unable to download latest version of ReModCE: {e}");
-                }
-
-                if (bytes == null)
-                {
-                    if (latestBytes == null)
-                    {
-                        MelonLogger.Error($"No local file exists and unable to download latest version from GitHub. {fileName} will not load!");
-                        loadedAssembly = null;
-                        return;
-                    }
-                    MelonLogger.Warning($"Couldn't find {fileName}.dll on disk. Saving latest version from GitHub.");
-                    bytes = latestBytes;
-                    try
-                    {
-                        File.WriteAllBytes($"Mods/{fileName}.dll", bytes);
-                    }
-                    catch (IOException)
-                    {
-                        ReLogger.Warning($"Failed writing {fileName} to disk. You may encounter errors while using ReModCE.");
-                    }
-                }
-
-                if (latestBytes != null)
-                {
-                    var latestHash = ComputeHash(sha256, latestBytes);
-                    var currentHash = ComputeHash(sha256, bytes);
-
-                    if (latestHash != currentHash)
-                    {
-
-                        bytes = latestBytes;
-                        try
-                        {
-                            File.WriteAllBytes($"Mods/{fileName}.dll", bytes);
-                        }
-                        catch (IOException)
-                        {
-                            ReLogger.Warning($"Failed writing {fileName} to disk. You may encounter errors while using ReModCE.");
-                        }
-                        MelonLogger.Msg(System.ConsoleColor.Green, $"Updated {fileName} to latest version.");
-                    }
-                }
-
-
-                try
-                {
-                    loadedAssembly = Assembly.Load(bytes);
-                }
-                catch (BadImageFormatException e)
-                {
-                    MelonLogger.Error($"Couldn't load specified image: {e}");
-                    loadedAssembly = null;
+                    ReLogger.Msg("NEKONameTagsCVR.Loader Is Already Up To Date!");
                 }
             }
         }
@@ -210,14 +114,14 @@ namespace NEKONameTagsCVR.Loader
 
         private static string ComputeHash(HashAlgorithm sha256, byte[] data)
         {
-            var bytes = sha256.ComputeHash(data);
-            var sb = new StringBuilder();
-            foreach (var b in bytes)
+            byte[] array = sha256.ComputeHash(data);
+            StringBuilder stringBuilder = new StringBuilder();
+            byte[] array2 = array;
+            foreach (byte b in array2)
             {
-                sb.Append(b.ToString("x2"));
+                stringBuilder.Append(b.ToString("x2"));
             }
-
-            return sb.ToString();
+            return stringBuilder.ToString();
         }
     }
 }

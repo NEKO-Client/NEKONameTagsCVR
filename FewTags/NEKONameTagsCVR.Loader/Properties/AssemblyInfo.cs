@@ -2,18 +2,18 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 using MelonLoader;
-using NEKONameTagsCVR.Loader;
+using NekoNameTagsCVR.Loader;
 
 // General Information about an assembly is controlled through the following
-// set of attributes. Change these attribute values to modify the information
+// set of attributes. Change these attribute values to modify the information Company
 // associated with an assembly.
-[assembly: AssemblyTitle(NEKONameTagsCVR.Loader.BuildInfo.Name)]
+[assembly: AssemblyTitle(NekoNameTagsCVR.Loader.BuildInfo.Name)]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany(NEKONameTagsCVR.Loader.BuildInfo.Company)]
-[assembly: AssemblyProduct(NEKONameTagsCVR.Loader.BuildInfo.Name)]
-[assembly: AssemblyCopyright("Created by " + NEKONameTagsCVR.Loader.BuildInfo.Author)]
-[assembly: AssemblyTrademark(NEKONameTagsCVR.Loader.BuildInfo.Company)]
+[assembly: AssemblyCompany(NekoNameTagsCVR.Loader.BuildInfo.Company)]
+[assembly: AssemblyProduct(NekoNameTagsCVR.Loader.BuildInfo.Name)]
+[assembly: AssemblyCopyright("Created by " + NekoNameTagsCVR.Loader.BuildInfo.Author)]
+[assembly: AssemblyTrademark(NekoNameTagsCVR.Loader.BuildInfo.Company)]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -34,15 +34,13 @@ using NEKONameTagsCVR.Loader;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion(NEKONameTagsCVR.Loader.BuildInfo.Version)]
-[assembly: AssemblyFileVersion(NEKONameTagsCVR.Loader.BuildInfo.Version)]
+[assembly: AssemblyVersion(NekoNameTagsCVR.Loader.BuildInfo.Version)]
+[assembly: AssemblyFileVersion(NekoNameTagsCVR.Loader.BuildInfo.Version)]
 
-[assembly: MelonInfo(typeof(ReLoader), NEKONameTagsCVR.Loader.BuildInfo.Name, NEKONameTagsCVR.Loader.BuildInfo.Version, NEKONameTagsCVR.Loader.BuildInfo.Author, NEKONameTagsCVR.Loader.BuildInfo.DownloadLink)]
+[assembly: MelonInfo(typeof(ReLoader), NekoNameTagsCVR.Loader.BuildInfo.Name, NekoNameTagsCVR.Loader.BuildInfo.Version, NekoNameTagsCVR.Loader.BuildInfo.Author, NekoNameTagsCVR.Loader.BuildInfo.DownloadLink)]
 
 // Create and Setup a MelonModGame to mark a Mod as Universal or Compatible with specific Games.
 // If no MelonModGameAttribute is found or any of the Values for any MelonModGame on the Mod is null or empty it will be assumed the Mod is Universal.
 // Values for MelonModGame can be found in the Game's app.info file or printed at the top of every log directly beneath the Unity version.
 [assembly: MelonGame("Alpha Blend Interactive", "ChilloutVR")]
-#pragma warning disable CS0618 // Type or member is obsolete
 [assembly: MelonColor(ConsoleColor.Magenta)]
-#pragma warning restore CS0618 // Type or member is obsolete

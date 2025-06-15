@@ -45,6 +45,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="NEKONameTagsCVR.Loader.cs" />
     <Compile Include="ReLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

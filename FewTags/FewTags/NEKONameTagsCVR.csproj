@@ -48,12 +48,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\DarkRift.Client.dll</HintPath>
     </Reference>
-    <Reference Include="DarkRift.Server, Version=2.4.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DarkRift.Server">
       <HintPath>..\Dlls\DarkRift.Server.dll</HintPath>
     </Reference>
-    <Reference Include="DissonanceVoip, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DissonanceVoip">
       <HintPath>..\Dlls\DissonanceVoip.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -65,8 +63,14 @@
       <HintPath>..\Dlls\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,8 +89,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\UnityEngine.AccessibilityModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="UnityEngine.Advertisements">
       <HintPath>..\Dlls\UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -177,8 +180,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\UnityEngine.LocalizationModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Monetization, Version=3.7.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="UnityEngine.Monetization">
       <HintPath>..\Dlls\UnityEngine.Monetization.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -237,8 +239,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\UnityEngine.TerrainPhysicsModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.TextCoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="UnityEngine.TextCoreModule">
       <HintPath>..\Dlls\UnityEngine.TextCoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -331,10 +332,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReLogger.cs" />
+    <Compile Include="Utils\Animations.cs" />
     <Compile Include="Utils\Json.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
